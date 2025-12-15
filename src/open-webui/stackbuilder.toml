@@ -28,7 +28,7 @@ extensions = ["oidc", "openai-edge-tts", "openedai-speech"]
 combos = ["oidc+openai-edge-tts", "oidc+openedai-speech"]
 
 [build.environments.step-ca]
-extensions = ["openai-edge-tts", "openedai-speech"]
+extensions = ["openai-edge-tts", "openedai-speech", "step-ca-trust"]
 combos = [
     "oidc-trust",
     "oidc-trust+openai-edge-tts",
