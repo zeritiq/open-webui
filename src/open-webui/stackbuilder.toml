@@ -1,10 +1,17 @@
 [paths]
 environments_path = "./environments"
-extensions_dirs = ["extensions/tts", "extensions/providers", "extensions"]
+extensions_dirs = [
+    "extensions/database",
+    "extensions/tts",
+    "extensions/providers",
+    "extensions",
+]
 
 [build]
 extensions = [
     "oidc",
+    "postgresql",
+    "sqlite",
     "ollama",
     "openai",
     "openai-edge-tts",
@@ -27,7 +34,7 @@ extensions = ["openai"]
 extensions = ["openai"]
 
 [build.environments.letsencrypt]
-extensions = ["openai", "oidc"]
+extensions = ["openai", "oidc", "postgresql"]
 combos = ["openai+oidc"]
 
 [build.environments.step-ca]

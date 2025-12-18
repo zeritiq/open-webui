@@ -1,0 +1,26 @@
+services:
+  open-webui-postgres:
+    container_name: ${DATABASE_HOST:-open-webui-postgres}
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-open-webui}
+      POSTGRES_USER: ${DATABASE_USER:-open-webui}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - open-webui-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -h localhost -U ${DATABASE_USER:-open-webui} -d ${DATABASE_NAME:-open-webui}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - open-webui-network
+
+volumes:
+  open-webui-db:
+    name: ${PROJECT_NAME:-open-webui}-db
+
+networks:
+  open-webui-network:
+    name: ${PROJECT_NAME:-open-webui}-network

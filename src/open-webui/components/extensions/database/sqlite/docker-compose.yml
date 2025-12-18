@@ -1,0 +1,4 @@
+services:
+  open-webui:
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-sqlite:///${DATA_DIR}/webui.db}

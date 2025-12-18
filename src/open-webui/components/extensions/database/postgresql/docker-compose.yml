@@ -1,0 +1,9 @@
+services:
+  open-webui:
+    environment:
+      DATABASE_TYPE: ${DATABASE_TYPE:-postgresql}
+      DATABASE_HOST: ${DATABASE_HOST:-open-webui-postgres}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+      DATABASE_NAME: ${DATABASE_NAME:-open-webui}
+      DATABASE_USER: ${DATABASE_USER:-open-webui}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
