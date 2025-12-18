@@ -1,23 +1,23 @@
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "${LOG_MAX_SIZE:-10m}"
+    max-file: "${LOG_MAX_FILE:-3}"
+    compress: "${LOG_COMPRESS:-true}"
 services:
   open-webui:
-    image: ${WEBUI_DOCKER_IMAGE:-ghcr.io/open-webui/open-webui:main}
+    image: ${IMAGE:-ghcr.io/open-webui/open-webui:main}
     container_name: ${PROJECT_NAME:-open-webui}
     restart: unless-stopped
     volumes:
       - open-webui:/app/backend/data
-    logging:
-      driver: "json-file"
-      options:
-        max-size: 10m
-        max-file: 3
+    logging: *default-logging
     environment:
-      OPENAI_API_BASE_URL: ${OPENAI_API_BASE_URL}
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      TASK_MODEL_EXTERNAL: ${TASK_MODEL_EXTERNAL}
-      DEFAULT_MODELS: ${DEFAULT_MODELS}
+      DEFAULT_MODELS: ${DEFAULT_MODELS:-}
       DEFAULT_LOCALE: ${DEFAULT_LOCALE:-en}
-      ENABLE_EVALUATION_ARENA_MODELS: ${ENABLE_EVALUATION_ARENA_MODELS:-false}
+      ENABLE_OPENAI_API: ${ENABLE_OPENAI_API:-false}
       ENABLE_OLLAMA_API: ${ENABLE_OLLAMA_API:-false}
+      ENABLE_EVALUATION_ARENA_MODELS: ${ENABLE_EVALUATION_ARENA_MODELS:-false}
       OFFLINE_MODE: ${OFFLINE_MODE:-false}
       WEBUI_SECRET_KEY: ${WEBUI_SECRET_KEY:-}
       CHAT_STREAM_SPLIT_LARGE_CONTENT: ${CHAT_STREAM_SPLIT_LARGE_CONTENT:-true}

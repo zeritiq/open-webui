@@ -15,7 +15,7 @@ services:
     environment:
       DEFAULT_MODELS: ${DEFAULT_MODELS:-}
       DEFAULT_LOCALE: ${DEFAULT_LOCALE:-en}
-      ENABLE_OPENAI_API: ${ENABLE_OPENAI_API:-false}
+      ENABLE_OPENAI_API: ${ENABLE_OPENAI_API:-true}
       ENABLE_OLLAMA_API: ${ENABLE_OLLAMA_API:-false}
       ENABLE_EVALUATION_ARENA_MODELS: ${ENABLE_EVALUATION_ARENA_MODELS:-false}
       OFFLINE_MODE: ${OFFLINE_MODE:-false}
@@ -26,14 +26,19 @@ services:
       VIRTUAL_HOST: ${VIRTUAL_HOST}
       LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+      OPENAI_API_BASE_URL: ${OPENAI_API_BASE_URL:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_API_BASE_URLS: ${OPENAI_API_BASE_URLS:-}
+      OPENAI_API_KEYS: ${OPENAI_API_KEYS:-}
+      TASK_MODEL_EXTERNAL: ${TASK_MODEL_EXTERNAL}
     networks:
       - open-webui-network
-      - letsencrypt-network
+      - step-ca-network
 volumes:
   open-webui:
     name: ${PROJECT_NAME:-open-webui}
 networks:
   open-webui-network:
     name: ${PROJECT_NAME:-open-webui}-network
-  letsencrypt-network:
+  step-ca-network:
     external: true

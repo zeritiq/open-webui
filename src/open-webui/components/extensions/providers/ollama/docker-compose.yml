@@ -1,0 +1,8 @@
+services:
+  open-webui:
+    environment:
+      ENABLE_OLLAMA_API: ${ENABLE_OLLAMA_API:-true}
+      USE_OLLAMA_DOCKER: ${USE_OLLAMA_DOCKER:-false}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://localhost:11434}
+      OLLAMA_BASE_URLS: ${OLLAMA_BASE_URLS:-}
+      TASK_MODEL: ${TASK_MODEL}

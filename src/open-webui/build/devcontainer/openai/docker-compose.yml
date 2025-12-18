@@ -15,25 +15,26 @@ services:
     environment:
       DEFAULT_MODELS: ${DEFAULT_MODELS:-}
       DEFAULT_LOCALE: ${DEFAULT_LOCALE:-en}
-      ENABLE_OPENAI_API: ${ENABLE_OPENAI_API:-false}
+      ENABLE_OPENAI_API: ${ENABLE_OPENAI_API:-true}
       ENABLE_OLLAMA_API: ${ENABLE_OLLAMA_API:-false}
       ENABLE_EVALUATION_ARENA_MODELS: ${ENABLE_EVALUATION_ARENA_MODELS:-false}
       OFFLINE_MODE: ${OFFLINE_MODE:-false}
       WEBUI_SECRET_KEY: ${WEBUI_SECRET_KEY:-}
       CHAT_STREAM_SPLIT_LARGE_CONTENT: ${CHAT_STREAM_SPLIT_LARGE_CONTENT:-true}
       CHAT_STREAM_RESPONSE_CHUNK_MAX_BUFFER_SIZE: ${CHAT_STREAM_RESPONSE_CHUNK_MAX_BUFFER_SIZE:-10485760}
-      VIRTUAL_PORT: ${VIRTUAL_PORT}
-      VIRTUAL_HOST: ${VIRTUAL_HOST}
-      LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
-      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+      OPENAI_API_BASE_URL: ${OPENAI_API_BASE_URL:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_API_BASE_URLS: ${OPENAI_API_BASE_URLS:-}
+      OPENAI_API_KEYS: ${OPENAI_API_KEYS:-}
+      TASK_MODEL_EXTERNAL: ${TASK_MODEL_EXTERNAL}
     networks:
       - open-webui-network
-      - letsencrypt-network
+      - open-webui-workspace-network
 volumes:
   open-webui:
     name: ${PROJECT_NAME:-open-webui}
 networks:
   open-webui-network:
     name: ${PROJECT_NAME:-open-webui}-network
-  letsencrypt-network:
+  open-webui-workspace-network:
     external: true
