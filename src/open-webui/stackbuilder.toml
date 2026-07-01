@@ -25,10 +25,7 @@ extensions = [
 "oidc-trust" = ["oidc", "step-ca-trust"]
 
 [build.environments]
-available = ["devcontainer", "forwarding", "letsencrypt", "step-ca"]
-
-[build.environments.devcontainer]
-extensions = ["openai"]
+available = ["forwarding", "letsencrypt", "step-ca"]
 
 [build.environments.forwarding]
 extensions = ["openai"]

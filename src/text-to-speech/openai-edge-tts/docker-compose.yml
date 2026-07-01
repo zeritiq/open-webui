@@ -1,13 +1,16 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: ${LOG_MAX_SIZE:-10m}
+    max-file: ${LOG_MAX_FILE:-3}
+    compress: ${LOG_COMPRESS:-true}
+
 services:
   openai-edge-tts:
     image: travisvn/openai-edge-tts
     container_name: openai-edge-tts
     restart: unless-stopped
-    logging:
-      driver: "json-file"
-      options:
-        max-size: 10m
-        max-file: 3
+    logging: *default-logging
     environment:
       TZ: ${TZ:-UTC}
       API_KEY: ${API_KEY:-your_api_key_here}
